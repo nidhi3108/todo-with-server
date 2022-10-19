@@ -104,6 +104,28 @@ app.post("/save",function(req,res){
 })
 
 
+
+app.post("/delete",function(req,res){
+	if(todo){
+		console.log(req.body.key);
+		console.log(req.body);
+		console.log(key);
+
+
+	}
+	//  console.log(key);
+	// var alltodo=req.body;
+	// console.log(alltodo);
+	// var result=alltodo.filter(element=>
+	// 	if(element!=req.body)
+	// 	{
+	// 		var 
+	// 	}
+	// )
+})
+
+
+
 app.post("/todo",function(req,res){
 	
 	// res.end(JSON.stringify(todo))
@@ -113,9 +135,9 @@ app.post("/todo",function(req,res){
 })
 
 function logger(req,res,next){
-	console.log("req recived at :",Date.now());
-	console.log("req recived at url:",req.url);
-	console.log("req method is :",req.method);
+	// console.log("req recived at :",Date.now());
+	// console.log("req recived at url:",req.url);
+	// console.log("req method is :",req.method);
 	next()
 }
 

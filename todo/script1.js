@@ -1,11 +1,11 @@
 var input=document.getElementById("input")
 var btn=document.getElementById("btn")
 var parent=document.getElementById("parent")
+
 btn.addEventListener("click",function(event)
 {
     if(input.value)
     {
-
         var request=new XMLHttpRequest();
         request.open("post","/save")
         request.setRequestHeader("content-type","application/json")
@@ -22,19 +22,30 @@ btn.addEventListener("click",function(event)
          delbutton.innerHTML="Delete";
          todobox.appendChild(delbutton)
          input.value=""
-
-      })
-
-         
+         delbutton.addEventListener("click",deletetodo(todo))
+      }) 
     }
  })
+
+
+  
+function deletetodo(event){
+    var key=event.target.parentNode.children[0];
+    console.log(key);
+    // console.log(todo);
+    var request=new XMLHttpRequest();
+    request.open("post","/delete")
+    request.send({todo:key});
+}
+  
+
+
 
  var request=new XMLHttpRequest();
  request.open("post","/todo")
  request.send();
 
  request.addEventListener("load",function(todo){
- 
    var todos=JSON.parse(request.responseText)
     todos.forEach(function(task){
       var todobox=document.createElement("div")
@@ -48,6 +59,6 @@ btn.addEventListener("click",function(event)
          delbutton.innerHTML="Delete";
          todobox.appendChild(delbutton)
          input.value=""
+         delbutton.addEventListener("click",deletetodo)
     })
-
 })
