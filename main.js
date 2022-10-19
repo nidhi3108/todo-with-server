@@ -106,22 +106,19 @@ app.post("/save",function(req,res){
 
 
 app.post("/delete",function(req,res){
-	if(todo){
-		console.log(req.body.key);
-		console.log(req.body);
-		console.log(key);
-
-
-	}
-	//  console.log(key);
-	// var alltodo=req.body;
-	// console.log(alltodo);
-	// var result=alltodo.filter(element=>
-	// 	if(element!=req.body)
-	// 	{
-	// 		var 
-	// 	}
-	// )
+	// console.log(req.body.todo);
+	console.log(req.body.key);
+    fs.readFile("./db.txt","utf-8",function(err,data){
+		var alltodos=[];
+		alltodos=JSON.parse(data)
+		// var result=[]
+		 var result=alltodos.filter(ele=>{
+           if(ele!=req.body.key){
+			   return result;
+			}
+		})
+		console.log(result);
+	})
 })
 
 

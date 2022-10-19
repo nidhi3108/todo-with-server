@@ -30,12 +30,18 @@ btn.addEventListener("click",function(event)
 
   
 function deletetodo(event){
-    var key=event.target.parentNode.children[0];
-    console.log(key);
+    var todo=event.target.parentNode.children[0].innerHTML;
+    console.log(todo);
     // console.log(todo);
     var request=new XMLHttpRequest();
     request.open("post","/delete")
-    request.send({todo:key});
+    // request.setRequestHeader("content-type","application/json")
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify({key:todo}));
+    request.addEventListener("load",function(){
+      //yha p server se jo res aata h vo likha jata h
+      console.log(request.responseText);
+    })
 }
   
 
