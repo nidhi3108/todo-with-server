@@ -9,16 +9,18 @@ btn.addEventListener("click",function(event)
         var request=new XMLHttpRequest();
         request.open("post","/save")
         request.setRequestHeader("content-type","application/json")
-        request.send(JSON.stringify({todo:input.value},{todo:delbutton}));
-
+        request.send(JSON.stringify({todo:input.value,todo:"Delete"}));
         request.addEventListener("load",function(){
-          
+        var todobox=document.createElement("div")
+        todobox.setAttribute("id","todobox")
+        parent.appendChild(todobox)
          var list=document.createElement("li")
+         list.setAttribute("id","todo1")
          list.innerHTML=input.value;
-         parent.appendChild(list)
+         todobox.appendChild(list)
          var delbutton=document.createElement("button")
-         delbutton.innerHTML=Delete;
-         list.appendChild(delbutton)
+         delbutton.innerHTML="Delete";
+         todobox.appendChild(delbutton)
          input.value=""
 
       })
@@ -35,13 +37,17 @@ btn.addEventListener("click",function(event)
  
    var todos=JSON.parse(request.responseText)
     todos.forEach(function(task){
-      var list=document.createElement("li")
-      list.innerHTML=task.todo;
-      parent.appendChild(list)
-      var delbutton=document.createElement("button")
-      delbutton.innerHTML=Delete;
-      parent.appendChild(delbutton)
-      input.value=""
+      var todobox=document.createElement("div")
+      todobox.setAttribute("id","todobox")
+        parent.appendChild(todobox)
+         var list=document.createElement("li")
+         list.setAttribute("id","todo1")
+         list.innerHTML=task.todo;
+         todobox.appendChild(list)
+         var delbutton=document.createElement("button")
+         delbutton.innerHTML="Delete";
+         todobox.appendChild(delbutton)
+         input.value=""
     })
 
 })
