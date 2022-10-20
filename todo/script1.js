@@ -33,29 +33,29 @@ btn.addEventListener("click",function(event)
  })
 
 function edittodo(event){
-  var todobox=event.target.parentNode;   //todobox larha h pura
-  console.log(todobox);
-    var edittargetvalue=event.target.innerHTML;
-    console.log(edittargetvalue);           //edit or save innertext
-    var currenttodovalue=event.target.parentNode.children[0];
-    console.log(currenttodovalue);       //li item todo value whole li box
-    var aftertodovalue=event.target.parentNode.children[0].innerHTML;
-    console.log(aftertodovalue);  //todo ki value innertext
-    if(edittargetvalue=='Edit')
+  var todoBoxNodeContainer=event.target.parentNode;   //todobox larha h pura
+  console.log(todoBoxNodeContainer);
+    var editButtonNodeText=event.target.innerHTML;
+    console.log(editButtonNodeText);           //edit or save innertext
+    var todoListNodeElement=event.target.parentNode.children[0];
+    console.log(todoListNodeElement);       //li item todo value whole li box
+    var todoListNodeElementText=event.target.parentNode.children[0].innerHTML;
+    console.log(todoListNodeElementText);  //todo ki value innertext
+    if(editButtonNodeText=='Edit')
     {
-      var inputedittodo=document.createElement("input")
-      currenttodovalue.innerHTML='';
-      currenttodovalue.appendChild(inputedittodo);
+      var editInputBox=document.createElement("input")
+      todoListNodeElement.innerHTML='';
+      todoListNodeElement.appendChild(editInputBox);
       event.target.innerHTML="Save";
-      console.log(inputedittodo.value);
+      console.log(editInputBox.value);
     }
     else{
-      var newvalue=event.target.parentNode.children[0].innerHTML;   //input aarha h li ki place p jo input box h
-      console.log(newvalue);
-      currenttodovalue.innerHTML='';
-      console.log(currenttodovalue);
-      todobox.prepend(currenttodovalue)
-      currenttodovalue.innerHTML="Sad";
+      var newTextOfeditInputBox=event.target.parentNode.children[0].innerHTML;   //input aarha h li ki place p jo input box h
+      console.log(newTextOfeditInputBox);
+      todoListNodeElement.innerHTML='';
+      console.log(todoListNodeElement);
+      todoBoxNodeContainer.prepend(todoListNodeElement)
+      todoListNodeElement.innerHTML="Sad";
       event.target.innerHTML="Edit"
       
     }
