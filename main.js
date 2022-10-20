@@ -82,9 +82,6 @@ app.use(express.static("todo"))
 // 	})
 // })
 app.post("/save",function(req,res){
-	//jo data frontend se bheja gya h use access krne k liy req.body use krna h
-    // console.log(req.body)
-	// todo.push(req.body)
 	fs.readFile("./db.txt","utf-8",function(err,data){
 		var todos=[];
 		if(data.length>0)
@@ -109,32 +106,32 @@ app.post("/delete",function(req,res){
 	// console.log(req.body.todo);
 	console.log(req.body.key);
     fs.readFile("./db.txt","utf-8",function(err,data){
-		var alltodos=[];
-		alltodos=JSON.parse(data)
-		// var result=[]
-		 var result=alltodos.filter(ele=>{
-           if(ele!=req.body.key){
-			   return result;
+		 var alltodos=JSON.parse(data)
+		 var result=alltodos.filter((ele)=>{
+           if(ele.todo!=req.body.key){
+			   return ele; 
 			}
 		})
-		console.log(result);
+	fs.writeFile("./db.txt",JSON.stringify(result),function(){  
+		if(err){
+			res.end("err aayi")
+		}
+		else{
+			res.end('Delete successfull');  //shi h ? haaa
+		}
 	})
+})
 })
 
 
 
 app.post("/todo",function(req,res){
-	
-	// res.end(JSON.stringify(todo))
 	fs.readFile("./db.txt","utf-8",function(err,data){
 		res.end(data);
 	})
 })
 
 function logger(req,res,next){
-	// console.log("req recived at :",Date.now());
-	// console.log("req recived at url:",req.url);
-	// console.log("req method is :",req.method);
 	next()
 }
 
