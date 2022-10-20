@@ -27,12 +27,14 @@ btn.addEventListener("click",function(event)
          todobox.appendChild(delbutton)
          input.value=""
          delbutton.addEventListener("click",deletetodo)
-         editButton.addEventListener("click",edittodo(todobox))
+         editButton.addEventListener("click",edittodo)
       }) 
     }
  })
 
-function edittodo(event,todobox){
+function edittodo(event){
+  var todobox=event.target.parentNode;
+  console.log(todobox);
     var edittargetvalue=event.target.innerHTML;
     console.log(edittargetvalue);           //edit or save innertext
     var currenttodovalue=event.target.parentNode.children[0];
@@ -48,9 +50,14 @@ function edittodo(event,todobox){
       console.log(inputedittodo.value);
     }
     else{
-      var newlisttodo=document.createElement("li")
-      todobox.appendChild(newlisttodo)
-      newlisttodo.innerHTML=currenttodovalue.value;
+      // var newlisttodo=document.createElement("li")
+      var newvalue=event.target.parentNode.children[0].innerHTML;
+      console.log(newvalue);
+      //  var newvalue1
+      currenttodovalue.innerHTML='';
+      console.log(currenttodovalue);
+      todobox.prepend(currenttodovalue)
+      currenttodovalue.innerHTML="Sad";
       event.target.innerHTML="Edit"
       
     }
