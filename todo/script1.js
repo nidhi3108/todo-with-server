@@ -50,10 +50,8 @@ function edittodo(event){
       console.log(inputedittodo.value);
     }
     else{
-      // var newlisttodo=document.createElement("li")
       var newvalue=event.target.parentNode.children[0].innerHTML;
       console.log(newvalue);
-      //  var newvalue1
       currenttodovalue.innerHTML='';
       console.log(currenttodovalue);
       todobox.prepend(currenttodovalue)
