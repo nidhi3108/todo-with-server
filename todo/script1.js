@@ -33,14 +33,14 @@ btn.addEventListener("click",function(event)
  })
 
 function edittodo(event){
-  var todobox=event.target.parentNode;
+  var todobox=event.target.parentNode;   //todobox larha h pura
   console.log(todobox);
     var edittargetvalue=event.target.innerHTML;
     console.log(edittargetvalue);           //edit or save innertext
     var currenttodovalue=event.target.parentNode.children[0];
     console.log(currenttodovalue);       //li item todo value whole li box
     var aftertodovalue=event.target.parentNode.children[0].innerHTML;
-    console.log(aftertodovalue);
+    console.log(aftertodovalue);  //todo ki value innertext
     if(edittargetvalue=='Edit')
     {
       var inputedittodo=document.createElement("input")
@@ -50,7 +50,7 @@ function edittodo(event){
       console.log(inputedittodo.value);
     }
     else{
-      var newvalue=event.target.parentNode.children[0].innerHTML;
+      var newvalue=event.target.parentNode.children[0].innerHTML;   //input aarha h li ki place p jo input box h
       console.log(newvalue);
       currenttodovalue.innerHTML='';
       console.log(currenttodovalue);
