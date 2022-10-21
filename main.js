@@ -123,6 +123,20 @@ app.post("/delete",function(req,res){
 })
 })
 
+app.post("/update",function(req,res){
+	// console.log(req.body);
+	fs.readFile("./db.txt","utf-8",function(err,data){
+		var allTodos=JSON.parse(data)
+		var result=allTodos.map((ele)=>{
+			if(ele.todo!= req.body.todo)
+			return ele
+			else
+			return {todo:req.body.todo}
+		})
+		console.log(result);
+	})
+})
+
 
 
 app.post("/todo",function(req,res){
