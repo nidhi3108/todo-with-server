@@ -117,7 +117,7 @@ app.post("/delete",function(req,res){
 			res.end("err aayi")
 		}
 		else{
-			res.end('Delete successfull');  //shi h ? haaa
+			res.end('Delete successfull');
 		}
 	})
 })
@@ -129,13 +129,23 @@ app.post("/update",function(req,res){
 
 	fs.readFile("./db.txt","utf-8",function(err,data){
 		var allTodos=JSON.parse(data)
-		var result=allTodos.filter((ele)=>{
+		console.log(req.body.newTodo);
+		// console.log("nn");
+		var result=allTodos.map((ele)=>{
 			if(ele.todo== req.body.oldTodo)
 			return req.body.newTodo;
 			else
-			return req.body.oldTodo;
+			return ele.todo;
 		})
 		console.log(result);
+		fs.writeFile("./db.txt",JSON.stringify(result),function(){  
+			if(err){
+				res.end("err aayi")
+			}
+			else{
+				res.end('Edit successfull'); 
+			}
+		})
 	})
 })
 
