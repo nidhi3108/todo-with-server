@@ -124,14 +124,16 @@ app.post("/delete",function(req,res){
 })
 
 app.post("/update",function(req,res){
-	// console.log(req.body);
+	console.log(req.body.newTodo);
+	console.log(req.body.oldTodo);
+
 	fs.readFile("./db.txt","utf-8",function(err,data){
 		var allTodos=JSON.parse(data)
-		var result=allTodos.map((ele)=>{
-			if(ele.todo!= req.body.todo)
-			return ele
+		var result=allTodos.filter((ele)=>{
+			if(ele.todo== req.body.oldTodo)
+			return req.body.newTodo;
 			else
-			return {todo:req.body.todo}
+			return req.body.oldTodo;
 		})
 		console.log(result);
 	})

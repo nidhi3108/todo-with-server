@@ -1,3 +1,4 @@
+var oldTextOfTodo;
 var input = document.getElementById("input");
 var btn = document.getElementById("btn");
 var parent = document.getElementById("parent");
@@ -40,6 +41,8 @@ function edittodo(event) {
   var todoListNodeElementText = event.target.parentNode.children[0].innerHTML;
   console.log(todoListNodeElementText); //todo ki value innertext
   if (editButtonNodeText == "Edit") {
+    oldTextOfTodo=event.target.parentNode.children[0].innerHTML;
+    console.log(oldTextOfTodo);
     var editInputBox = document.createElement("input");
     todoListNodeElement.innerHTML = "";
     todoListNodeElement.appendChild(editInputBox);
@@ -51,7 +54,7 @@ function edittodo(event) {
     var request = new XMLHttpRequest();
     request.open("post", "/update");
     request.setRequestHeader("Content-Type", "application/json")
-    request.send(JSON.stringify({ todo : newTextOfeditInputBox }))
+    request.send(JSON.stringify({ newTodo : newTextOfeditInputBox ,oldTodo:oldTextOfTodo}))
     request.addEventListener("load", function () {
       todoListNodeElement.innerHTML = "";
       console.log(todoListNodeElement);
